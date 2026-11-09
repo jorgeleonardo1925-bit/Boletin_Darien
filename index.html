@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boletín Informativo - Transformación y Control en el Darién</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white; color: black; }
+      .print-shadow-none { box-shadow: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 font-sans text-slate-800 min-h-screen py-8">
+
+  <!-- Contenedor Principal del Boletín -->
+  <main class="max-w-4xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden print-shadow-none border border-slate-200">
+    
+    <!-- Encabezado del Boletín -->
+    <div class="bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 text-white p-8 border-b-4 border-emerald-500">
+      <div class="flex justify-between items-start mb-6 flex-wrap gap-4">
+        <div>
+          <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            Informe de Difusión Pública
+          </span>
+          <h2 class="text-3xl md:text-4xl font-extrabold mt-3 tracking-tight text-white">
+            RESTAURANDO EL ORDEN Y LA SELVA
+          </h2>
+          <p class="text-emerald-200 text-lg font-light mt-1">
+            Del flujo migratorio descontrolado al control soberano y la recuperación ambiental en el Darién
+          </p>
+        </div>
+        
+        <!-- Bloque derecho: Datos institucionales y Botón de Impresión Integrado -->
+        <div class="flex flex-col items-end gap-3">
+          <div class="text-right text-xs text-slate-300 border-l border-slate-700 pl-4">
+            <p class="font-bold text-white">Edición Especial 2026</p>
+            <p>Ministerio de Seguridad Pública</p>
+            <p>República de Panamá</p>
+          </div>
+          <!-- Botón integrado elegante (se oculta automáticamente al imprimir) -->
+          <button onclick="window.print()" class="no-print bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-4 py-2 rounded-lg text-xs transition flex items-center gap-2 shadow-md">
+            <i class="fa-solid fa-print"></i> Guardar PDF / Imprimir
+          </button>
+        </div>
+      </div>
+
+      <!-- Destacados / Tarjetas Principales -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-800">
+        <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700">
+          <span class="text-slate-400 text-xs block">Variación del Tránsito</span>
+          <span class="text-2xl font-bold text-emerald-400">-95%</span>
+          <span class="text-[10px] text-slate-400 block mt-1">Comparativo interanual histórico</span>
+        </div>
+        <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700">
+          <span class="text-slate-400 text-xs block">Puntos Ciegos</span>
+          <span class="text-2xl font-bold text-emerald-400">Controlados</span>
+          <span class="text-[10px] text-slate-400 block mt-1">Cierre de pasos informales</span>
+        </div>
+        <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700">
+          <span class="text-slate-400 text-xs block">Asistencia</span>
+          <span class="text-2xl font-bold text-emerald-400">Coordinada</span>
+          <span class="text-[10px] text-slate-400 block mt-1">Con OIM, ACNUR y Cruz Roja</span>
+        </div>
+        <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700">
+          <span class="text-slate-400 text-xs block">Enfoque Actual</span>
+          <span class="text-2xl font-bold text-emerald-400">Ecológico</span>
+          <span class="text-[10px] text-slate-400 block mt-1">Saneamiento de ríos y selva</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cuerpo del Boletín -->
+    <div class="p-8 space-y-8">
+
+      <!-- Sección 1: Antecedentes y Contexto -->
+      <section>
+        <div class="flex items-center gap-3 border-b border-slate-200 pb-2 mb-4">
+          <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">1</div>
+          <h3 class="text-xl font-bold text-slate-800">¿Qué pasó en el Darién? Antecedentes de la crisis</h3>
+        </div>
+        <p class="text-slate-600 leading-relaxed text-sm md:text-base mb-4">
+          Durante el período crítico de 2022 y 2023, la frontera selvática del Darién experimentó una saturación sin precedentes provocada por el cruce masivo e irregular de más de 500,000 personas al año. Esta situación generó un fuerte impacto ambiental en cuencas hidrográficas y una alta presión sobre las comunidades de acogida.
+        </p>
+        
+        <!-- Gráfico interactivo de tendencia -->
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 text-center">
+            Evolución Comparativa del Tránsito Migratorio Irregular (Estadística de Referencia)
+          </h4>
+          <div class="h-64 w-full">
+            <canvas id="dariénChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección 2: Las Acciones del Gobierno / Control Territorial -->
+      <section>
+        <div class="flex items-center gap-3 border-b border-slate-200 pb-2 mb-4">
+          <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">2</div>
+          <h3 class="text-xl font-bold text-slate-800">¿Cómo se resolvió? Estrategia y Control Estatal</h3>
+        </div>
+        <p class="text-slate-600 leading-relaxed text-sm md:text-base mb-4">
+          Gracias a una estrategia integral liderada por las fuerzas de seguridad (SENAFRONT) junto al Ministerio de Seguridad Pública y acuerdos de repatriación asistida, el país logró contener y encauzar el flujo:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="border border-slate-200 rounded-lg p-4 bg-white shadow-sm hover:shadow-md transition">
+            <div class="text-emerald-600 text-2xl mb-2"><i class="fa-solid fa-shield-halved"></i></div>
+            <h4 class="font-bold text-slate-800 text-base mb-1">Cierre de Pasos Ciegos</h4>
+            <p class="text-xs text-slate-500">Bloqueo de trochas y rutas no autorizadas en la selva, obligando al uso de puntos de control definidos.</p>
+          </div>
+          <div class="border border-slate-200 rounded-lg p-4 bg-white shadow-sm hover:shadow-md transition">
+            <div class="text-emerald-600 text-2xl mb-2"><i class="fa-solid fa-user-shield"></i></div>
+            <h4 class="font-bold text-slate-800 text-base mb-1">Desarticulación Criminal</h4>
+            <p class="text-xs text-slate-500">Operaciones contra redes de coyotaje, robo y tráfico de personas que operaban en las zonas profundas.</p>
+          </div>
+          <div class="border border-slate-200 rounded-lg p-4 bg-white shadow-sm hover:shadow-md transition">
+            <div class="text-emerald-600 text-2xl mb-2"><i class="fa-solid fa-plane-departure"></i></div>
+            <h4 class="font-bold text-slate-800 text-base mb-1">Acuerdos de Retorno</h4>
+            <p class="text-xs text-slate-500">Vuelos de deportación y repatriación asistida que desincentivaron la ruta irregular hacia el norte.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección 3: Aliados Humanitarios y Trabajo Entorno -->
+      <section>
+        <div class="flex items-center gap-3 border-b border-slate-200 pb-2 mb-4">
+          <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">3</div>
+          <h3 class="text-xl font-bold text-slate-800">Relación con Organismos Humanitarios</h3>
+        </div>
+        <div class="bg-emerald-50/50 border border-emerald-200 rounded-xl p-5 flex flex-col md:flex-row gap-4 items-center">
+          <div class="text-4xl text-emerald-600 px-2">
+            <i class="fa-solid fa-handshake-angle"></i>
+          </div>
+          <div class="text-sm text-slate-700 space-y-2">
+            <p>
+              <strong>Readecuación operativa:</strong> La sustancial disminución de cruces permitió a los albergues temporales y a los organismos internacionales (como OIM, ACNUR y Cruz Roja) escalar su atención a un esquema de contención y acompañamiento personalizado para casos vulnerables y retorno voluntario.
+            </p>
+            <p>
+              El Estado panameño garantiza el trato digno y la protección de los derechos humanos en cada fase del proceso de control fronterizo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección 4: Recuperación Ambiental -->
+      <section>
+        <div class="flex items-center gap-3 border-b border-slate-200 pb-2 mb-4">
+          <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">4</div>
+          <h3 class="text-xl font-bold text-slate-800">Saneamiento Ecológico del Parque Nacional</h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+              <i class="fa-solid fa-leaf text-emerald-600"></i> Limpieza de Cuencas Hidrográficas
+            </h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Equipos comunitarios y brigadas ambientales desarrollan jornadas intensivas de extracción de plástico y desechos sólidos acumulados en los ríos Tuira y Chucunaque.
+            </p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+            <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+              <i class="fa-solid fa-tree text-emerald-600"></i> Regeneración de Capa Vegetal
+            </h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Monitoreo activo para acelerar la reforestación natural de trochas abandonadas, garantizando la preservación del pulmón natural más importante de la región.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Pie de página informativo -->
+    <footer class="bg-slate-900 text-slate-400 p-6 text-center text-xs border-t border-slate-800">
+      <div class="max-w-2xl mx-auto space-y-2">
+        <p class="font-semibold text-slate-300">Boletín Informativo de Difusión Institucional y Ciudadana</p>
+        <p>Producido para informar a la ciudadanía sobre los avances en seguridad soberana, gestión migratoria y protección socioambiental.</p>
+        <p class="text-slate-500 pt-2 border-t border-slate-800">© 2026 República de Panamá — Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Configuración del Gráfico Estadístico
+    const ctx = document.getElementById('dariénChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['2023 (Pico de Crisis)', '2024 (Inicio Contención)', '2025 (Reducción)', '2026 (Frontera Controlada)'],
+        datasets: [{
+          label: 'Estimado de Cruces Irregulares Registrados',
+          data: [520000, 280000, 45000, 3500],
+          backgroundColor: [
+            'rgba(239, 68, 68, 0.7)',
+            'rgba(245, 158, 11, 0.7)',
+            'rgba(59, 130, 246, 0.7)',
+            'rgba(16, 185, 129, 0.8)'
+          ],
+          borderColor: [
+            'rgb(239, 68, 68)',
+            'rgb(245, 158, 11)',
+            'rgb(59, 130, 246)',
+            'rgb(16, 185, 129)'
+          ],
+          borderWidth: 1.5,
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return ` Transitantes: ${context.raw.toLocaleString('es-PA')}`;
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                return value.toLocaleString('es-PA');
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
